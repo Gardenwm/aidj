@@ -1,0 +1,50 @@
+instagram = "";
+ghosting = "";
+
+leftWristX = 0;
+leftWristY = 0;
+rightWristX = 0;
+rightWristY = 0;
+
+function preload()
+{
+    instagram = loadSound("instagram.mp3");
+    ghosting = loadSound("ghosting.mp3");
+}
+
+function setup()
+{
+    canvas = createCapture(500, 600);
+    canvas.center();
+
+    video = createCapture(VIDEO);
+    video.hide();
+
+    poseNet = ml5.poseNet(video, modelLoaded);
+    poseNet.on('pose', gotPoses);
+}
+
+function modelLoaded()
+{
+    console.log('PoseNet is initialized');
+}
+
+function gotPoses(results)
+{
+    if(results.length > 0)
+    {
+        console.log(results);
+        leftWristX = results[0].pose.leftWrist.x;
+        leftWristY = results[0].pose.leftWrist.y;
+        console.log("leftWristX = " + leftWristX + "leftWristY = " + leftWristY);
+
+        rightWristX = results[0].pose.rightWrist.x;
+        rightWristY = results[0].pose.rightWrist.y;
+        console.log("rightWristX = " + rightWristX + "rightWristY = " + rightWristY);
+    }
+}
+
+function draw()
+{
+    image(video, 0, 0, 500, 600);
+}

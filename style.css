@@ -1,0 +1,29 @@
+.heading
+{
+    font-size:25px;
+    width:100%;
+    margin:0;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.note
+{
+    font-size: 15px;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.div_speed
+{
+    float:left;
+}
+
+canvas
+{
+    border: solid 5px gray;
+    border-radius:20px;
+}
+
+body
+{
+    background-size:cover;
+}
